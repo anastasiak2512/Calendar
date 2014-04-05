@@ -40,23 +40,19 @@ int Hebrew::HebrewCalendarElapsedDays(int year)
 // Number of days elapsed from the Sunday prior to the start of the
 // Hebrew calendar to the mean conjunction of Tishri of Hebrew year.
 
-    int MonthsElapsed =
-            (235 * ((year - 1) / 19))           // Months in complete cycles so far.
-                    + (12 * ((year - 1) % 19))          // Regular months in this cycle.
-                    + (7 * ((year - 1) % 19) + 1) / 19; // Leap months this cycle
+    int MonthsElapsed= monthElapsed(year);
     int PartsElapsed = 204 + 793 * (MonthsElapsed % 1080);
     int HoursElapsed =
             5 + 12 * MonthsElapsed + 793 * (MonthsElapsed  / 1080)
                     + PartsElapsed / 1080;
     int ConjunctionDay = 1 + 29 * MonthsElapsed + HoursElapsed / 24;
-    int ConjunctionParts = 1080 * (HoursElapsed % 24) + PartsElapsed % 1080;
     int AlternativeDay;
-    if ((ConjunctionParts >= 19440)        // If new moon is at or after midday,
+    if (((1080 * (HoursElapsed % 24) + PartsElapsed % 1080) >= 19440)        // If new moon is at or after midday,
             || (((ConjunctionDay % 7) == 2)    // ...or is on a Tuesday...
-                    && (ConjunctionParts >= 9924)  // at 9 hours, 204 parts or later...
+                    && ((1080 * (HoursElapsed % 24) + PartsElapsed % 1080) >= 9924)  // at 9 hours, 204 parts or later...
                     && !(HebrewLeapYear(year)))   // ...of a common year,
             || (((ConjunctionDay % 7) == 1)    // ...or is on a Monday at...
-                    && (ConjunctionParts >= 16789) // 15 hours, 589 parts or later...
+                    && ((1080 * (HoursElapsed % 24) + PartsElapsed % 1080) >= 16789) // 15 hours, 589 parts or later...
                     && (HebrewLeapYear(year - 1))))// at the end of a leap year
         // Then postpone Rosh HaShanah one day
         AlternativeDay = ConjunctionDay + 1;
@@ -69,6 +65,14 @@ int Hebrew::HebrewCalendarElapsedDays(int year)
         return (1+ AlternativeDay);
     else
         return AlternativeDay;
+}
+
+int Hebrew::monthElapsed(int year) {
+    int MonthsElapsed =
+            (235 * ((year - 1) / 19))           // Months in complete cycles so far.
+                    + (12 * ((year - 1) % 19))          // Regular months in this cycle.
+                    + (7 * ((year - 1) % 19) + 1) / 19; // Leap months this cycle
+    return MonthsElapsed;
 }
 
 int Hebrew::DaysInHebrewYear(int year)

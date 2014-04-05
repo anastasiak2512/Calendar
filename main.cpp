@@ -5,6 +5,17 @@
 
 using namespace std;
 
+const char * DayName[7] =
+{
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+};
+
 int main()
 {
   int d;
@@ -24,7 +35,7 @@ int main()
     cin >> m;
     cout << "Enter day (1.."
          << Gregorian::LastDayOfGregorianMonth(m, y) << "): "; cin >> d;
-    
+
     Gregorian g(m,d,y);
     int a = g;
     cout << g << " = " << a << " = " << DayName[g % 7] << "\n";

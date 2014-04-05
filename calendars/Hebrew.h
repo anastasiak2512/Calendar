@@ -15,4 +15,6 @@ public:
     int LongHeshvan(int year);
     int ShortKislev(int year);
     int LastDayOfHebrewMonth(int month, int year);
+
+    int monthElapsed(int year);
 };
