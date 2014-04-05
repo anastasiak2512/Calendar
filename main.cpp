@@ -2,7 +2,6 @@
 #include "calendars/Islamic.h"
 #include "calendars/Julian.h"
 #include "calendars/Hebrew.h"
-#include <iostream>
 
 using namespace std;
 

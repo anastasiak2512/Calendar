@@ -1,16 +1,18 @@
 #include "Julian.h"
 #include "calendar_defs.h"
 
+static const int JulianEpoch = -2;
+
 Julian::Julian(int d) {
     // Search forward year by year from approximate year
     year = (d + JulianEpoch)/366;
-    while (d >= Julian(1,1,year+1))
+    while (d >= Julian(1,1, year +1))
         year++;
     // Search forward month by month from January
     month = 1;
-    while (d > Julian(month, LastDayOfJulianMonth(month,year), year))
+    while (d > Julian(month, LastDayOfJulianMonth(month, year), year))
         month++;
-    day = d - Julian(month,1,year) + 1;
+    day = d - Julian(month,1, year) + 1;
 }
 
 int Julian::LastDayOfJulianMonth(int month, int year)

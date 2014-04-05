@@ -4,13 +4,13 @@
 Gregorian::Gregorian(int d) {
     // Search forward year by year from approximate year
     year = d/366;
-    while (d >= Gregorian(1,1,year+1))
+    while (d >= Gregorian(1,1, year +1))
         year++;
     // Search forward month by month from January
     month = 1;
-    while (d > Gregorian(month, LastDayOfGregorianMonth(month,year), year))
+    while (d > Gregorian(month, LastDayOfGregorianMonth(month, year), year))
         month++;
-    day = d - Gregorian(month,1,year) + 1;
+    day = d - Gregorian(month,1, year) + 1;
 }
 
 int Gregorian::LastDayOfGregorianMonth(int month,int year)

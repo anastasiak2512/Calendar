@@ -1,17 +1,19 @@
 #include "calendar_defs.h"
 #include "Hebrew.h"
 
+static const int HebrewEpoch = -1373429;
+
 Hebrew::Hebrew(int d) { // Computes the Hebrew date from the absolute date.
     year = (d + HebrewEpoch) / 366; // Approximation from below.
     // Search forward for year from the approximation.
-    while (d >= Hebrew(7,1,year + 1))
+    while (d >= Hebrew(7,1, year + 1))
         year++;
     // Search forward for month from either Tishri or Nisan.
     if (d < Hebrew(1, 1, year))
         month = 7;  //  Start at Tishri
     else
         month = 1;  //  Start at Nisan
-    while (d > Hebrew(month, (LastDayOfHebrewMonth(month,year)), year))
+    while (d > Hebrew(month, (LastDayOfHebrewMonth(month, year)), year))
         month++;
     // Calculate the day by subtraction.
     day = d - Hebrew(month, 1, year) + 1;

@@ -2,21 +2,21 @@
 #include "Islamic.h"
 
 Islamic::Islamic(int d) {
-    if (d <= IslamicEpoch) { // Date is pre-Islamic
+    if (d <= 227014) { // Date is pre-Islamic
         month = 0;
         day = 0;
         year = 0;
     }
     else {
         // Search forward year by year from approximate year
-        year = (d - IslamicEpoch) / 355;
-        while (d >= Islamic(1,1,year+1))
+        year = (d - 227014) / 355;
+        while (d >= Islamic(1,1, year +1))
             year++;
         // Search forward month by month from Muharram
         month = 1;
-        while (d > Islamic(month, LastDayOfIslamicMonth(month,year), year))
+        while (d > Islamic(month, LastDayOfIslamicMonth(month, year), year))
             month++;
-        day = d - Islamic(month,1,year) + 1;
+        day = d - Islamic(month,1, year) + 1;
     }
 }
 
@@ -42,6 +42,6 @@ Islamic::operator int() { // Computes the absolute date from the Islamic date.
             + month/2                //            ...this year
             + 354 * (year - 1)       // non-leap days in prior years
             + (3 + (11 * year)) / 30 // leap days in prior years
-            + IslamicEpoch);                // days before start of calendar
+            + 227014);                // days before start of calendar
 }
 
