@@ -8,12 +8,12 @@ Gregorian::Gregorian(int d) {
         year++;
     // Search forward month by month from January
     month = 1;
-    while (d > Gregorian(month, LastDayOfGregorianMonth(month, year), year))
+    while (d > Gregorian(month, LastMonthDay(month, year), year))
         month++;
     day = d - Gregorian(month,1, year) + 1;
 }
 
-int Gregorian::LastDayOfGregorianMonth(int month,int year)
+int Gregorian::LastMonthDay(int month, int year)
 {
     switch (month) {
         case 2:
@@ -49,7 +49,7 @@ Gregorian Gregorian::NthXday(int n, int x, int month, int year, int day) {
     }
     else {
         if (day == 0) {
-            day = LastDayOfGregorianMonth(month, year);
+            day = LastMonthDay(month, year);
         };  // default for negative n
         return Gregorian
                 ((7 * (n + 1)) + General::XdayOnOrBefore(Gregorian(month, day, year), x));
@@ -59,7 +59,7 @@ Gregorian Gregorian::NthXday(int n, int x, int month, int year, int day) {
 Gregorian::operator int() { // Computes the absolute date from the Gregorian date.
     int N = day;           // days this month
     for (int m = month - 1;  m > 0; m--) // days in prior months this year
-        N = N + LastDayOfGregorianMonth(m, year);
+        N = N + LastMonthDay(m, year);
     return
             (N                    // days this year
                 + 365 * (year - 1)   // days in previous years ignoring leap days

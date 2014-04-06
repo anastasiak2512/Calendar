@@ -7,7 +7,7 @@ public:
     Islamic(int d);
 
     int IslamicLeapYear(int year);
-    int LastDayOfIslamicMonth(int month, int year);
+    int LastMonthDay(int month, int year);
 
     operator int();
 };

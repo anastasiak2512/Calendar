@@ -10,12 +10,12 @@ Julian::Julian(int d) {
         year++;
     // Search forward month by month from January
     month = 1;
-    while (d > Julian(month, LastDayOfJulianMonth(month, year), year))
+    while (d > Julian(month, LastMonthDay(month, year), year))
         month++;
     day = d - Julian(month,1, year) + 1;
 }
 
-int Julian::LastDayOfJulianMonth(int month, int year)
+int Julian::LastMonthDay(int month, int year)
 {
     switch (month) {
         case 2:
@@ -34,7 +34,7 @@ int Julian::LastDayOfJulianMonth(int month, int year)
 Julian::operator int() {
     int N = day;                         // days this month
     for (int m = month - 1;  m > 0; m--) // days in prior months this year
-        N = N + LastDayOfJulianMonth(m, year);
+        N = N + LastMonthDay(m, year);
     return
             (N                     // days this year
                     + 365 * (year - 1)    // days in previous years ignoring leap days

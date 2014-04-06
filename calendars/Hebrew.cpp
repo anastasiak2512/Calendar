@@ -13,7 +13,7 @@ Hebrew::Hebrew(int d) { // Computes the Hebrew date from the absolute date.
         month = 7;  //  Start at Tishri
     else
         month = 1;  //  Start at Nisan
-    while (d > Hebrew(month, (LastDayOfHebrewMonth(month, year)), year))
+    while (d > Hebrew(month, (LastMonthDay(month, year)), year))
         month++;
     // Calculate the day by subtraction.
     day = d - Hebrew(month, 1, year) + 1;
@@ -99,7 +99,7 @@ int Hebrew::ShortKislev(int year)
         return 0;
 }
 
-int Hebrew::LastDayOfHebrewMonth(int month, int year)
+int Hebrew::LastMonthDay(int month, int year)
 {
     if ((month == 2)
             || (month == 4)
@@ -120,19 +120,19 @@ Hebrew::operator int() { // Computes the absolute date of Hebrew date.
         // this year before and after Nisan.
         int m = 7;
         while (m <= (LastMonthOfHebrewYear(year))) {
-            DayInYear = DayInYear + LastDayOfHebrewMonth(m, year);
+            DayInYear = DayInYear + LastMonthDay(m, year);
             m++;
         };
         m = 1;
         while (m < month) {
-            DayInYear = DayInYear + LastDayOfHebrewMonth(m, year);
+            DayInYear = DayInYear + LastMonthDay(m, year);
             m++;
         }
     }
     else { // Add days in prior months this year
         int m = 7;
         while (m < month) {
-            DayInYear = DayInYear + LastDayOfHebrewMonth(m, year);
+            DayInYear = DayInYear + LastMonthDay(m, year);
             m++;
         }
     }

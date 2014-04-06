@@ -34,7 +34,7 @@ int main()
     cout << "Enter month (1..12): ";
     cin >> m;
     cout << "Enter day (1.."
-         << Gregorian::LastDayOfGregorianMonth(m, y) << "): "; cin >> d;
+         << Gregorian::LastMonthDay(m, y) << "): "; cin >> d;
 
     Gregorian g(m,d,y);
     int a = g;

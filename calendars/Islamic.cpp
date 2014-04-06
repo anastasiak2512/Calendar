@@ -14,7 +14,7 @@ Islamic::Islamic(int d) {
             year++;
         // Search forward month by month from Muharram
         month = 1;
-        while (d > Islamic(month, LastDayOfIslamicMonth(month, year), year))
+        while (d > Islamic(month, LastMonthDay(month, year), year))
             month++;
         day = d - Islamic(month,1, year) + 1;
     }
@@ -28,7 +28,7 @@ int Islamic::IslamicLeapYear(int year)
         return 0;
 }
 
-int Islamic::LastDayOfIslamicMonth(int month, int year)
+int Islamic::LastMonthDay(int month, int year)
 {
     if (((month % 2) == 1) || ((month == 12) && IslamicLeapYear(year)))
         return 30;

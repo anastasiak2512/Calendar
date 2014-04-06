@@ -6,7 +6,7 @@ public:
     Julian(int d);
     Julian(int m, int d, int y): Calendar(m,d,y) {};
 
-    int LastDayOfJulianMonth(int month, int year);
+    int LastMonthDay(int month, int year);
 
     // Computes the absolute date from the Julian date.
     operator int();
