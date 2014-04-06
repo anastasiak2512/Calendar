@@ -29,10 +29,7 @@ int Hebrew::HebrewLeapYear(int year)
 
 int Hebrew::LastMonthOfHebrewYear(int year)
 {
-    if (HebrewLeapYear(year))
-        return 13;
-    else
-        return 12;
+    return (HebrewLeapYear(year)) ? 13 : 12;
 }
 
 int Hebrew::HebrewCalendarElapsedDays(int year)
