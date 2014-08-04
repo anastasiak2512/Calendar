@@ -18,25 +18,26 @@ const char * DayName[7] =
 
 int main()
 {
-  int d;
-  int m;
-  int y;
+    int day;
+    int month;
+    int year;
   
   while (1)
   {
     cout << "Enter year (>0): ";
-    cin >> y;
-    if ( y <= 0 ) 
+      cin >> year;
+      if (year <= 0)
     {
       break;
     }
 
     cout << "Enter month (1..12): ";
-    cin >> m;
+      cin >> month;
     cout << "Enter day (1.."
-         << Gregorian::LastMonthDay(m, y) << "): "; cin >> d;
+            << Gregorian::LastMonthDay(month, year) << "): ";
+      cin >> day;
 
-      Gregorian gregorian_calendar(m, d, y);
+      Gregorian gregorian_calendar(month, day, year);
       int a = gregorian_calendar;
       cout << gregorian_calendar << " = " << a << " = " << DayName[gregorian_calendar % 7] << "\n";
 
