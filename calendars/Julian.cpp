@@ -12,7 +12,8 @@ Julian::Julian(int d) {
     month = 1;
     while (d > Julian(month, LastMonthDay(month, year), year))
         month++;
-    day = d - Julian(month,1, year) + 1;
+    int JulDay = Julian(month,1, year);
+    day = d - 1 + JulDay;
 }
 
 int Julian::LastMonthDay(int month, int year)
