@@ -36,25 +36,25 @@ int main()
     cout << "Enter day (1.."
          << Gregorian::LastMonthDay(m, y) << "): "; cin >> d;
 
-    Gregorian g(m,d,y);
-    int a = g;
-    cout << g << " = " << a << " = " << DayName[g % 7] << "\n";
-    
-    g = a;
-    a = g;
-    cout << "    = Gregorian date " << g << " = absolute date " << a << "\n";
-    
-    Julian j(a);
-    a = j;
-    cout << "    = Julian date " << j << " = absolute date " << a << "\n";
-    
-    Hebrew h(a);
-    a = h;
-    cout << "    = Hebrew date " << h << " = absolute date " << a << "\n";
-    
-    Islamic I(a);
-    a = I;
-    cout << "    = Islamic date " << I << " = absolute date " << a << "\n";
+      Gregorian gregorian_calendar(m, d, y);
+      int a = gregorian_calendar;
+      cout << gregorian_calendar << " = " << a << " = " << DayName[gregorian_calendar % 7] << "\n";
+
+      gregorian_calendar = a;
+      a = gregorian_calendar;
+      cout << "    = Gregorian date " << gregorian_calendar << " = absolute date " << a << "\n";
+
+      Julian julian_calendar(a);
+      a = julian_calendar;
+      cout << "    = Julian date " << julian_calendar << " = absolute date " << a << "\n";
+
+      Hebrew hebrew_calendar(a);
+      a = hebrew_calendar;
+      cout << "    = Hebrew date " << hebrew_calendar << " = absolute date " << a << "\n";
+
+      Islamic islamic_calendar(a);
+      a = islamic_calendar;
+      cout << "    = Islamic date " << islamic_calendar << " = absolute date " << a << "\n";
   }
 
   return 0;
