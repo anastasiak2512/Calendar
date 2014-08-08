@@ -24,17 +24,16 @@ int main()
   
   while (1)
   {
-    cout << "Enter year (>0): ";
+      cout << "Enter year (>0): ";
       cin >> year;
-      if (year <= 0)
-    {
-      break;
-    }
+      if (year <= 0) {
+          break;
+      }
 
-    cout << "Enter month (1..12): ";
+      cout << "Enter month (1..12): ";
       cin >> month;
-    cout << "Enter day (1.."
-            << Gregorian::LastMonthDay(month, year) << "): ";
+      cout << "Enter day (1.."
+              << Gregorian::LastMonthDay(month, year) << "): ";
       cin >> day;
 
       Gregorian gregorian_calendar(month, day, year);

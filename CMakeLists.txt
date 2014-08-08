@@ -6,7 +6,7 @@ add_definitions(-std=c++11)
 set(SOURCE_FILES main.cpp)
 add_executable(calendar_run ${SOURCE_FILES})
 
-include_directories(caledars)
+include_directories(calendars)
 
 add_subdirectory(calendars)
 

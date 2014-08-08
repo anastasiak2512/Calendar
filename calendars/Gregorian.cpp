@@ -1,6 +1,8 @@
 #include "General.h"
 #include "Gregorian.h"
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "IncompatibleTypes"
 Gregorian::Gregorian(int d) {
     // Search forward year by year from approximate year
     year = d/366;
@@ -58,7 +60,7 @@ Gregorian Gregorian::NthXday(int n, int x, int month, int year, int day) {
 
 Gregorian::operator int() { // Computes the absolute date from the Gregorian date.
     int N = day;           // days this month
-    for (int m = month - 1;  m > 0; m--) // days in prior months this year
+    for (int m = month - 1; m > 0; m--)
         N = N + LastMonthDay(m, year);
     return
             (N                    // days this year
@@ -67,3 +69,5 @@ Gregorian::operator int() { // Computes the absolute date from the Gregorian dat
                 - (year - 1)/100     // ...minus prior century years...
                 + (year - 1)/400);   // ...plus prior years divisible by 400
 }
+
+#pragma clang diagnostic pop

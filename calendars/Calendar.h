@@ -3,18 +3,53 @@
 
 class Calendar {
 protected:
-    int year = 1;   // 1...
-    int month = 1;  // 1 == January, ..., 12 == December
+    int year = 1;
+    int month = 1;
     int day = 1;
+
+    int mark = 0;
 
 public:
     Calendar(int m, int d, int y): month(m), day(d), year(y) {};
     Calendar(int d) {};
     Calendar() {};
 
-    int GetMonth() { return month; }
-    int GetDay() { return day; }
-    int GetYear() { return year; }
-};
 
+    int getYear() const {
+        return year;
+    }
+
+    void setYear(int year) {
+        Calendar::year = year;
+    }
+
+    int getMonth() const {
+        return month;
+    }
+
+    void setMonth(int month) {
+        Calendar::month = month;
+    }
+
+    int getDay() const {
+        return day;
+    }
+
+    void setDay(int day) {
+        Calendar::day = day;
+    }
+
+    int getMark() const {
+        return mark;
+    }
+
+    void setMark(int mark) {
+        Calendar::mark = mark;
+    }
+
+    int daysTillNewYear() {
+        return 0;
+    }
+
+};
 #endif /*CALENDAR_H*/
