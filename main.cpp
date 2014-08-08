@@ -38,11 +38,13 @@ int main()
 
       Gregorian gregorian_calendar(month, day, year);
       int a = gregorian_calendar;
-      cout << gregorian_calendar << " = " << a << " = " << DayName[gregorian_calendar % 7] << "\n";
+      cout << gregorian_calendar << " = " << a << " = "
+              << DayName[gregorian_calendar % 7] << "\n";
 
       gregorian_calendar = a;
       a = gregorian_calendar;
-      cout << "    = Gregorian date " << gregorian_calendar << " = absolute date " << a << "\n";
+      cout << "    = Gregorian date " << gregorian_calendar
+              << " = absolute date " << a << "\n";
 
       Julian julian_calendar(a);
       a = julian_calendar;
