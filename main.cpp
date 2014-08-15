@@ -1,7 +1,7 @@
-#include "calendars/Gregorian.h"
-#include "calendars/Islamic.h"
-#include "calendars/Julian.h"
-#include "calendars/Hebrew.h"
+#include "GregorianCalendar.h"
+#include "IslamicCalendar.h"
+#include "JulianCalendar.h"
+#include "HebrewCalendar.h"
 
 using namespace std;
 
@@ -33,30 +33,30 @@ int main()
       cout << "Enter month (1..12): ";
       cin >> month;
       cout << "Enter day (1.."
-              << Gregorian::LastMonthDay(month, year) << "): ";
+              << GregorianCalendar::LastMonthDay(month, year) << "): ";
       cin >> day;
 
-      Gregorian gregorian_calendar(month, day, year);
+      GregorianCalendar gregorian_calendar(month, day, year);
       int a = gregorian_calendar;
       cout << gregorian_calendar << " = " << a << " = "
               << DayName[gregorian_calendar % 7] << "\n";
 
       gregorian_calendar = a;
       a = gregorian_calendar;
-      cout << "    = Gregorian date " << gregorian_calendar
+      cout << "    = GregorianCalendar date " << gregorian_calendar
               << " = absolute date " << a << "\n";
 
-      Julian julian_calendar(a);
+      JulianCalendar julian_calendar(a);
       a = julian_calendar;
-      cout << "    = Julian date " << julian_calendar << " = absolute date " << a << "\n";
+      cout << "    = JulianCalendar date " << julian_calendar << " = absolute date " << a << "\n";
 
-      Hebrew hebrew_calendar(a);
+      HebrewCalendar hebrew_calendar(a);
       a = hebrew_calendar;
-      cout << "    = Hebrew date " << hebrew_calendar << " = absolute date " << a << "\n";
+      cout << "    = HebrewCalendar date " << hebrew_calendar << " = absolute date " << a << "\n";
 
-      Islamic islamic_calendar(a);
+      IslamicCalendar islamic_calendar(a);
       a = islamic_calendar;
-      cout << "    = Islamic date " << islamic_calendar << " = absolute date " << a << "\n";
+      cout << "    = IslamicCalendar date " << islamic_calendar << " = absolute date " << a << "\n";
   }
 
   return 0;

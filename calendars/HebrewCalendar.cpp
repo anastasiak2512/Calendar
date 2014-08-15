@@ -1,25 +1,25 @@
 #include "calendar_defs.h"
-#include "Hebrew.h"
+#include "HebrewCalendar.h"
 
 static const int HebrewEpoch = -1373429;
 
-Hebrew::Hebrew(int d) { // Computes the Hebrew date from the absolute date.
+HebrewCalendar::HebrewCalendar(int d) { // Computes the HebrewCalendar date from the absolute date.
     year = (d + HebrewEpoch) / 366; // Approximation from below.
     // Search forward for year from the approximation.
-    while (d >= Hebrew(7,1, year + 1))
+    while (d >= HebrewCalendar(7, 1, year + 1))
         year++;
     // Search forward for month from either Tishri or Nisan.
-    if (d < Hebrew(1, 1, year))
+    if (d < HebrewCalendar(1, 1, year))
         month = 7;  //  Start at Tishri
     else
         month = 1;  //  Start at Nisan
-    while (d > Hebrew(month, (LastMonthDay(month, year)), year))
+    while (d > HebrewCalendar(month, (LastMonthDay(month, year)), year))
         month++;
     // Calculate the day by subtraction.
-    day = d - Hebrew(month, 1, year) + 1;
+    day = d - HebrewCalendar(month, 1, year) + 1;
 }
 
-int Hebrew::HebrewLeapYear(int year)
+int HebrewCalendar::HebrewLeapYear(int year)
 {
     if ((((7 * year) + 1) % 19) < 7)
         return 1;
@@ -27,15 +27,15 @@ int Hebrew::HebrewLeapYear(int year)
         return 0;
 }
 
-int Hebrew::LastMonthOfHebrewYear(int year)
+int HebrewCalendar::LastMonthOfHebrewYear(int year)
 {
     return (HebrewLeapYear(year)) ? 13 : 12;
 }
 
-int Hebrew::HebrewCalendarElapsedDays(int year)
+int HebrewCalendar::HebrewCalendarElapsedDays(int year)
 {
 // Number of days elapsed from the Sunday prior to the start of the
-// Hebrew calendar to the mean conjunction of Tishri of Hebrew year.
+// HebrewCalendar calendar to the mean conjunction of Tishri of HebrewCalendar year.
 
     int MonthsElapsed= monthElapsed(year);
     int PartsElapsed = 204 + 793 * (MonthsElapsed % 1080);
@@ -64,7 +64,7 @@ int Hebrew::HebrewCalendarElapsedDays(int year)
         return AlternativeDay;
 }
 
-int Hebrew::monthElapsed(int year) {
+int HebrewCalendar::monthElapsed(int year) {
     int MonthsElapsed =
             (235 * ((year - 1) / 19))           // Months in complete cycles so far.
                     + (12 * ((year - 1) % 19))          // Regular months in this cycle.
@@ -72,13 +72,13 @@ int Hebrew::monthElapsed(int year) {
     return MonthsElapsed;
 }
 
-int Hebrew::DaysInHebrewYear(int year)
+int HebrewCalendar::DaysInHebrewYear(int year)
 {
     return ((HebrewCalendarElapsedDays(year + 1)) -
             (HebrewCalendarElapsedDays(year)));
 }
 
-int Hebrew::LongHeshvan(int year)
+int HebrewCalendar::LongHeshvan(int year)
 {
     if ((DaysInHebrewYear(year) % 10) == 5)
         return 1;
@@ -86,9 +86,9 @@ int Hebrew::LongHeshvan(int year)
         return 0;
 }
 
-int Hebrew::ShortKislev(int year)
+int HebrewCalendar::ShortKislev(int year)
 {
-// True if Kislev is short in Hebrew year.
+// True if Kislev is short in HebrewCalendar year.
 
     if ((DaysInHebrewYear(year) % 10) == 3)
         return 1;
@@ -96,7 +96,7 @@ int Hebrew::ShortKislev(int year)
         return 0;
 }
 
-int Hebrew::LastMonthDay(int month, int year)
+int HebrewCalendar::LastMonthDay(int month, int year)
 {
     if ((month == 2)
             || (month == 4)
@@ -111,7 +111,7 @@ int Hebrew::LastMonthDay(int month, int year)
         return 30;
 }
 
-Hebrew::operator int() { // Computes the absolute date of Hebrew date.
+HebrewCalendar::operator int() { // Computes the absolute date of HebrewCalendar date.
     int DayInYear = day; // Days so far this month.
     if (month < 7) { // Before Tishri, so add days in prior months
         // this year before and after Nisan.

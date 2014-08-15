@@ -1,22 +1,22 @@
-#include "Julian.h"
+#include "JulianCalendar.h"
 #include "calendar_defs.h"
 
 static const int JulianEpoch = -2;
 
-Julian::Julian(int d) {
+JulianCalendar::JulianCalendar(int d) {
     // Search forward year by year from approximate year
     year = (d + JulianEpoch)/366;
-    while (d >= Julian(1,1, year +1))
+    while (d >= JulianCalendar(1, 1, year + 1))
         year++;
     // Search forward month by month from January
     month = 1;
-    while (d > Julian(month, LastMonthDay(month, year), year))
+    while (d > JulianCalendar(month, LastMonthDay(month, year), year))
         month++;
-    int JulDay = Julian(month,1, year);
+    int JulDay = JulianCalendar(month, 1, year);
     day = d - 1 + JulDay;
 }
 
-int Julian::LastMonthDay(int month, int year)
+int JulianCalendar::LastMonthDay(int month, int year)
 {
     switch (month) {
         case 2:
@@ -32,7 +32,7 @@ int Julian::LastMonthDay(int month, int year)
     }
 }
 
-Julian::operator int() {
+JulianCalendar::operator int() {
     int N = day;                         // days this month
     for (int m = month - 1;  m > 0; m--) // days in prior months this year
         N = N + LastMonthDay(m, year);

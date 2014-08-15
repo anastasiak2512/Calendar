@@ -1,10 +1,12 @@
 #include <ostream>
 #include "calendar_defs.h"
 
-class Hebrew : public Calendar {
+class HebrewCalendar : public Calendar {
 public:
-    Hebrew(int m, int d, int y): Calendar(m,d,y) {};
-    Hebrew(int d);
+    HebrewCalendar(int m, int d, int y) : Calendar(m, d, y) {
+    };
+
+    HebrewCalendar(int d);
 
     operator int();
 

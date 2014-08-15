@@ -1,10 +1,12 @@
 #include <iostream>
 #include "calendar_defs.h"
 
-class Julian : public Calendar {
+class JulianCalendar : public Calendar {
 public:
-    Julian(int d);
-    Julian(int m, int d, int y): Calendar(m,d,y) {};
+    JulianCalendar(int d);
+
+    JulianCalendar(int m, int d, int y) : Calendar(m, d, y) {
+    };
 
     int LastMonthDay(int month, int year);
 

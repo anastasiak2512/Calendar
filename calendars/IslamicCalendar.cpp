@@ -1,8 +1,8 @@
 #include "calendar_defs.h"
-#include "Islamic.h"
+#include "IslamicCalendar.h"
 
-Islamic::Islamic(int d) {
-    if (d <= 227014) { // Date is pre-Islamic
+IslamicCalendar::IslamicCalendar(int d) {
+    if (d <= 227014) { // Date is pre-IslamicCalendar
         month = 0;
         day = 0;
         year = 0;
@@ -10,17 +10,17 @@ Islamic::Islamic(int d) {
     else {
         // Search forward year by year from approximate year
         year = (d - 227014) / 355;
-        while (d >= Islamic(1,1, year +1))
+        while (d >= IslamicCalendar(1, 1, year + 1))
             year++;
         // Search forward month by month from Muharram
         month = 1;
-        while (d > Islamic(month, LastMonthDay(month, year), year))
+        while (d > IslamicCalendar(month, LastMonthDay(month, year), year))
             month++;
-        day = d - Islamic(month,1, year) + 1;
+        day = d - IslamicCalendar(month, 1, year) + 1;
     }
 }
 
-int Islamic::IslamicLeapYear(int year)
+int IslamicCalendar::IslamicLeapYear(int year)
 {
     if ((((11 * year) + 14) % 30) < 11)
         return 1;
@@ -28,7 +28,7 @@ int Islamic::IslamicLeapYear(int year)
         return 0;
 }
 
-int Islamic::LastMonthDay(int month, int year)
+int IslamicCalendar::LastMonthDay(int month, int year)
 {
     if (((month % 2) == 1) || ((month == 12) && IslamicLeapYear(year)))
         return 30;
@@ -36,7 +36,7 @@ int Islamic::LastMonthDay(int month, int year)
         return 29;
 }
 
-Islamic::operator int() { // Computes the absolute date from the Islamic date.
+IslamicCalendar::operator int() { // Computes the absolute date from the IslamicCalendar date.
     return (day                      // days so far this month
             + 29 * (month - 1)       // days so far...
             + month/2                //            ...this year

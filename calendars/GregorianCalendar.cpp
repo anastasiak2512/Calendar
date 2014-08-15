@@ -1,21 +1,22 @@
 #include "General.h"
-#include "Gregorian.h"
+#include "GregorianCalendar.h"
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "IncompatibleTypes"
-Gregorian::Gregorian(int d) {
+
+GregorianCalendar::GregorianCalendar(int d) {
     // Search forward year by year from approximate year
     year = d/366;
-    while (d >= Gregorian(1,1, year +1))
+    while (d >= GregorianCalendar(1, 1, year + 1))
         year++;
     // Search forward month by month from January
     month = 1;
-    while (d > Gregorian(month, LastMonthDay(month, year), year))
+    while (d > GregorianCalendar(month, LastMonthDay(month, year), year))
         month++;
-    day = d - Gregorian(month,1, year) + 1;
+    day = d - GregorianCalendar(month, 1, year) + 1;
 }
 
-int Gregorian::LastMonthDay(int month, int year)
+int GregorianCalendar::LastMonthDay(int month, int year)
 {
     switch (month) {
         case 2:
@@ -35,39 +36,39 @@ int Gregorian::LastMonthDay(int month, int year)
 }
 
 /*
-     The Gregorian date of nth x-day in month, year before/after optional day.
+     The GregorianCalendar date of nth x-day in month, year before/after optional day.
      x = 0 means Sunday, x = 1 means Monday, and so on.  If n<0, return the nth
      x-day before month day, year (inclusive).  If n>0, return the nth x-day
      after month day, year (inclusive).  If day is omitted or 0, it defaults
      to 1 if n>0, and month's last day otherwise.
 */
-Gregorian Gregorian::NthXday(int n, int x, int month, int year, int day) {
+GregorianCalendar GregorianCalendar::NthXday(int n, int x, int month, int year, int day) {
     if (n > 0) {
         if (day == 0) {
             day = 1;
         }  // default for positive n
-        return Gregorian
-                ((7 * (n - 1)) + General::XdayOnOrBefore(6 + Gregorian(month, day, year), x));
+        return GregorianCalendar
+                ((7 * (n - 1)) + General::XdayOnOrBefore(6 + GregorianCalendar(month, day, year), x));
     }
     else {
         if (day == 0) {
             day = LastMonthDay(month, year);
         };  // default for negative n
-        return Gregorian
-                ((7 * (n + 1)) + General::XdayOnOrBefore(Gregorian(month, day, year), x));
+        return GregorianCalendar
+                ((7 * (n + 1)) + General::XdayOnOrBefore(GregorianCalendar(month, day, year), x));
     }
 }
 
-Gregorian::operator int() { // Computes the absolute date from the Gregorian date.
+GregorianCalendar::operator int() { // Computes the absolute date from the GregorianCalendar date.
     int N = day;           // days this month
     for (int m = month - 1; m > 0; m--)
         N = N + LastMonthDay(m, year);
     return
             (N                    // days this year
-                + 365 * (year - 1)   // days in previous years ignoring leap days
-                + (year - 1)/4       // Julian leap days before this year...
-                - (year - 1)/100     // ...minus prior century years...
-                + (year - 1)/400);   // ...plus prior years divisible by 400
+                    + 365 * (year - 1)   // days in previous years ignoring leap days
+                    + (year - 1) / 4       // JulianCalendar leap days before this year...
+                    - (year - 1) / 100     // ...minus prior century years...
+                    + (year - 1) / 400);   // ...plus prior years divisible by 400
 }
 
 #pragma clang diagnostic pop
