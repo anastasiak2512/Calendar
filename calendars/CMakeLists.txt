@@ -22,7 +22,8 @@ set(SOURCE_FILES
     JulianCalendar.cpp
     IslamicCalendar.cpp
     HebrewCalendar.cpp
+    Calendar.html
     )
 
-add_library(calendars STATIC ${SOURCE_FILES})
+add_library(calendars STATIC ${SOURCE_FILES} ${HEADERS_FILES})
 

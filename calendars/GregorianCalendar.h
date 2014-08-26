@@ -3,7 +3,7 @@
 
 class GregorianCalendar : public Calendar {
 public:
-    GregorianCalendar(int d);
+    GregorianCalendar(int date);
 
     GregorianCalendar(int m, int d, int y) : Calendar(m, d, y) {
     };

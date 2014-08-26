@@ -4,11 +4,9 @@
 static const int JulianEpoch = -2;
 
 JulianCalendar::JulianCalendar(int d) {
-    // Search forward year by year from approximate year
-    year = (d + JulianEpoch)/366;
+    year = (d + JulianEpoch) / julianYearLen;
     while (d >= JulianCalendar(1, 1, year + 1))
         year++;
-    // Search forward month by month from January
     month = 1;
     while (d > JulianCalendar(month, LastMonthDay(month, year), year))
         month++;

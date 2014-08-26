@@ -4,16 +4,14 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "IncompatibleTypes"
 
-GregorianCalendar::GregorianCalendar(int d) {
-    // Search forward year by year from approximate year
-    year = d/366;
-    while (d >= GregorianCalendar(1, 1, year + 1))
+GregorianCalendar::GregorianCalendar(int date) {
+    year = date / 366;
+    while (date >= GregorianCalendar(1, 1, year + 1))
         year++;
-    // Search forward month by month from January
     month = 1;
-    while (d > GregorianCalendar(month, LastMonthDay(month, year), year))
+    while (date > GregorianCalendar(month, LastMonthDay(month, year), year))
         month++;
-    day = d - GregorianCalendar(month, 1, year) + 1;
+    day = date - GregorianCalendar(month, 1, year) + 1;
 }
 
 int GregorianCalendar::LastMonthDay(int month, int year)
@@ -46,16 +44,23 @@ GregorianCalendar GregorianCalendar::NthXday(int n, int x, int month, int year, 
     if (n > 0) {
         if (day == 0) {
             day = 1;
-        }  // default for positive n
+        }
+        GregorianCalendar calendar =
+                GregorianCalendar(month, day, year);
+        int general_day =
+                General::XdayOnOrBefore(6 + calendar, x);
         return GregorianCalendar
-                ((7 * (n - 1)) + General::XdayOnOrBefore(6 + GregorianCalendar(month, day, year), x));
+                ((7 * (n - 1)) + general_day);
     }
     else {
         if (day == 0) {
             day = LastMonthDay(month, year);
-        };  // default for negative n
-        return GregorianCalendar
-                ((7 * (n + 1)) + General::XdayOnOrBefore(GregorianCalendar(month, day, year), x));
+        }
+        GregorianCalendar calendar =
+                GregorianCalendar(month, day, year);
+        int date = (7 * (n + 1)) +
+                General::XdayOnOrBefore(calendar, x);
+        return GregorianCalendar(date);
     }
 }
 
@@ -70,5 +75,6 @@ GregorianCalendar::operator int() { // Computes the absolute date from the Grego
                     - (year - 1) / 100     // ...minus prior century years...
                     + (year - 1) / 400);   // ...plus prior years divisible by 400
 }
+
 
 #pragma clang diagnostic pop

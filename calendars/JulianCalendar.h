@@ -1,6 +1,9 @@
 #include <iostream>
 #include "calendar_defs.h"
 
+
+#define julianYearLen 366
+
 class JulianCalendar : public Calendar {
 public:
     JulianCalendar(int d);

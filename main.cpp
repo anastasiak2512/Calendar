@@ -41,8 +41,6 @@ int main()
       cout << gregorian_calendar << " = " << a << " = "
               << DayName[gregorian_calendar % 7] << "\n";
 
-      gregorian_calendar = a;
-      a = gregorian_calendar;
       cout << "    = GregorianCalendar date " << gregorian_calendar
               << " = absolute date " << a << "\n";
 

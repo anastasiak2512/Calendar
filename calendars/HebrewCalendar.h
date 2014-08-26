@@ -19,4 +19,5 @@ public:
     int LastMonthDay(int month, int year);
 
     int monthElapsed(int year);
+
 };

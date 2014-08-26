@@ -47,8 +47,8 @@ public:
         Calendar::mark = mark;
     }
 
-    int daysTillNewYear() {
-        return 0;
+    int getYearLen(int year) {
+        return 356;
     }
 
 };
