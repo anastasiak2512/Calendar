@@ -74,6 +74,7 @@ GregorianCalendar::operator int() { // Computes the absolute date from the Grego
                     + (year - 1) / 4       // JulianCalendar leap days before this year...
                     - (year - 1) / 100     // ...minus prior century years...
                     + (year - 1) / 400);   // ...plus prior years divisible by 400
+    printf("test unused");
 }
 
 

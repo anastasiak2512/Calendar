@@ -1,5 +1,4 @@
 #include "JulianCalendar.h"
-#include "calendar_defs.h"
 
 static const int JulianEpoch = -2;
 
