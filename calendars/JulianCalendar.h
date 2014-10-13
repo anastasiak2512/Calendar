@@ -15,4 +15,8 @@ public:
 
     // Computes the absolute date from the Julian date.
     operator int();
+
+    int getDefYearLen();
 };
+
+static const int MAX_MONTH_LEN = 31;
