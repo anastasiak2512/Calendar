@@ -6,7 +6,6 @@ add_definitions(-std=c++11)
 
 set(HEADER_FILES
     calendar_defs.h
-    Calendar.h
     General.h
     GregorianCalendar.h
     JulianCalendar.h
@@ -22,8 +21,7 @@ set(SOURCE_FILES
     JulianCalendar.cpp
     IslamicCalendar.cpp
     HebrewCalendar.cpp
-    Calendar.html
     )
 
-add_library(calendars STATIC ${SOURCE_FILES} ${HEADERS_FILES})
+add_library(calendars STATIC ${SOURCE_FILES} ${HEADER_FILES})
 

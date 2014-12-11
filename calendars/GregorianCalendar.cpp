@@ -1,8 +1,6 @@
-#include "General.h"
-#include "GregorianCalendar.h"
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "IncompatibleTypes"
+#include "GregorianCalendar.h"
+#include "General.h"
 
 GregorianCalendar::GregorianCalendar(int date) {
     year = date / 366;
@@ -29,10 +27,13 @@ int GregorianCalendar::LastMonthDay(int month, int year)
         case 6:
         case 9:
         case 11: return 30;
-        default: return 31;
+            //default: return 31;
     }
 }
 
+
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "IncompatibleTypes"
 /*
      The GregorianCalendar date of nth x-day in month, year before/after optional day.
      x = 0 means Sunday, x = 1 means Monday, and so on.  If n<0, return the nth
@@ -49,8 +50,9 @@ GregorianCalendar GregorianCalendar::NthXday(int n, int x, int month, int year, 
                 GregorianCalendar(month, day, year);
         int general_day =
                 General::XdayOnOrBefore(6 + calendar, x);
-        return GregorianCalendar
-                ((7 * (n - 1)) + general_day);
+        return
+                GregorianCalendar
+                        ((7 * (n - 1)) + general_day);
     }
     else {
         if (day == 0) {
@@ -63,6 +65,8 @@ GregorianCalendar GregorianCalendar::NthXday(int n, int x, int month, int year, 
         return GregorianCalendar(date);
     }
 }
+
+#pragma clang diagnostic pop
 
 GregorianCalendar::operator int() { // Computes the absolute date from the GregorianCalendar date.
     int N = day;           // days this month
@@ -77,5 +81,3 @@ GregorianCalendar::operator int() { // Computes the absolute date from the Grego
     printf("test unused");
 }
 
-
-#pragma clang diagnostic pop

@@ -3,7 +3,7 @@
 static const int JulianEpoch = -2;
 
 JulianCalendar::JulianCalendar(int d) {
-    year = (d + JulianEpoch) / julianYearLen;
+    year = (d + JulianEpoch) / year_max_len;
     while (d >= JulianCalendar(1, 1, year + 1))
         year++;
     month = 1;
@@ -13,6 +13,7 @@ JulianCalendar::JulianCalendar(int d) {
     day = d - 1 + JulDay;
 }
 
+//TODO: introduce constans
 int JulianCalendar::LastMonthDay(int month, int year)
 {
     switch (month) {
@@ -25,8 +26,13 @@ int JulianCalendar::LastMonthDay(int month, int year)
         case 6:
         case 9:
         case 11: return 30;
-        default: return 31;
+        default:
+            return MAX_MONTH_LEN;
     }
+}
+
+int getDefYearLen() {
+    return 356;
 }
 
 JulianCalendar::operator int() {

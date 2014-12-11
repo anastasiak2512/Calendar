@@ -133,7 +133,8 @@ HebrewCalendar::operator int() { // Computes the absolute date of HebrewCalendar
             m++;
         }
     }
-    return (DayInYear +
+    int d = DayInYear +
             (HebrewCalendarElapsedDays(year)// Days in prior years.
-                    + HebrewEpoch));         // Days elapsed before absolute date 1.
+                    + HebrewEpoch);
+    return d;         // Days elapsed before absolute date 1.
 }

@@ -1,8 +1,11 @@
 #include <iostream>
+
 #include "calendar_defs.h"
 
+#define MONTH_LEN 31
+#define MAX_MONTH_LEN MONTH_LEN
 
-#define julianYearLen 366
+static const int year_max_len = 366;
 
 class JulianCalendar : public Calendar {
 public:
@@ -16,7 +19,7 @@ public:
     // Computes the absolute date from the Julian date.
     operator int();
 
-    int getDefYearLen();
+//    int getDefYearLen();
+//
+//    void setMark(int mark);
 };
-
-static const int MAX_MONTH_LEN = 31;

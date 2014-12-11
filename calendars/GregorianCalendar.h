@@ -15,4 +15,8 @@ public:
 
     GregorianCalendar NthXday(int n, int x, int month, int year, int day = 0);
 
+    int getDefYearLen() {
+        return 356;
+    }
+
 };

@@ -10,18 +10,24 @@ protected:
     int mark = 0;
 
 public:
-    Calendar(int m, int d, int y): month(m), day(d), year(y) {};
-    Calendar(int d) {};
-    Calendar() {};
+    Calendar(int m, int d, int y) : month(m), day(d), year(y) {
+    };
+
+    Calendar(int d) {
+    };
+
+    Calendar() {
+    };
+
+    virtual int getDefYearLen() {
+        return 355;
+    }
 
 
     int getYear() const {
         return year;
     }
 
-    void setYear(int year) {
-        Calendar::year = year;
-    }
 
     int getMonth() const {
         return month;
@@ -44,12 +50,8 @@ public:
     }
 
     void setMark(int mark) {
-        Calendar::mark = mark;
-    }
 
-    int getYearLen(int year) {
-        return 356;
     }
-
 };
+
 #endif /*CALENDAR_H*/
