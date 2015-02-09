@@ -19,4 +19,7 @@ public:
         return 356;
     }
 
+
+    static int ConvertOverFlow(int month, int day, int year);
 };
+
