@@ -14,7 +14,8 @@ public:
     static int LastMonthDay(int month, int year);
 
 
-    GregorianCalendar NthXday(int n, int x, int month, int year, int day = 0);
+    GregorianCalendar NthXday(int n, int x,
+            int month, int year, int day = 0);
 
     int getDefYearLen() {
         return 356;
