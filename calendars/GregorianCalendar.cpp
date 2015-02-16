@@ -1,15 +1,17 @@
-
 #include "GregorianCalendar.h"
 #include "General.h"
 
+static const int i = 366;
+
 GregorianCalendar::GregorianCalendar(int date) {
-    year = date / 366;
+    year = date / i;
     while (date >= GregorianCalendar(1, 1, year + 1))
         year++;
     month = 1;
     while (date > GregorianCalendar(month, LastMonthDay(month, year), year))
         month++;
-    day = date - GregorianCalendar(month, 1, year) + 1;
+    GregorianCalendar t = GregorianCalendar(month, 1, year);
+    day = date - t + 1;
 }
 
 int GregorianCalendar::LastMonthDay(int month, int year)
@@ -27,10 +29,10 @@ int GregorianCalendar::LastMonthDay(int month, int year)
         case 6:
         case 9:
         case 11: return 30;
-            //default: return 31;
+        default:
+            return 31;
     }
 }
-
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "IncompatibleTypes"
@@ -78,6 +80,5 @@ GregorianCalendar::operator int() { // Computes the absolute date from the Grego
                     + (year - 1) / 4       // JulianCalendar leap days before this year...
                     - (year - 1) / 100     // ...minus prior century years...
                     + (year - 1) / 400);   // ...plus prior years divisible by 400
-    printf("test unused");
 }
 

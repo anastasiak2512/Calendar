@@ -24,4 +24,3 @@ set(SOURCE_FILES
     )
 
 add_library(calendars STATIC ${SOURCE_FILES} ${HEADER_FILES})
-

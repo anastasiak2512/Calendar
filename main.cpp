@@ -36,11 +36,13 @@ int main() {
             << DayName[gregorian_calendar % 7] << "\n";
 
     cout << "    = GregorianCalendar date " << gregorian_calendar
-            << " = absolute date " << a << "\n";
+            << " = absolute date " << a
+            << "last day" << gregorian_calendar.LastMonthDay(12, 2015) << "\n";
 
     JulianCalendar julian_calendar(a);
     a = julian_calendar;
-    cout << "    = JulianCalendar date " << julian_calendar << " = absolute date " << a << "\n";
+    cout << "    = JulianCalendar date " << julian_calendar << " = absolute date " << a
+            << "last day" << julian_calendar.LastMonthDay(12, 2015) << "\n";
 
     HebrewCalendar hebrew_calendar(a);
     a = hebrew_calendar;

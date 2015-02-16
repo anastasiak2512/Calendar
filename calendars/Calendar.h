@@ -19,10 +19,9 @@ public:
     Calendar() {
     };
 
-    virtual int getDefYearLen() {
+    int getDefYearLen() {
         return 355;
     }
-
 
     int getYear() const {
         return year;
