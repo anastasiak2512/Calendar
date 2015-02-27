@@ -22,5 +22,6 @@ public:
     }
 
 
+    int get_general_day(int x, GregorianCalendar &calendar);
 };
 

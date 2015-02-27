@@ -19,7 +19,7 @@ public:
     Calendar() {
     };
 
-    int getDefYearLen() {
+    virtual int getDefYearLen() {
         return 355;
     }
 
@@ -42,10 +42,6 @@ public:
 
     void setDay(int day) {
         Calendar::day = day;
-    }
-
-    int getMark() const {
-        return mark;
     }
 
     void setMark(int mark) {

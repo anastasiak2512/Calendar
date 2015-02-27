@@ -1,6 +1,9 @@
 #include "GregorianCalendar.h"
 #include "General.h"
 
+
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "IncompatibleTypes"
 static const int i = 366;
 
 GregorianCalendar::GregorianCalendar(int date) {
@@ -34,8 +37,6 @@ int GregorianCalendar::LastMonthDay(int month, int year)
     }
 }
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "IncompatibleTypes"
 /*
      The GregorianCalendar date of nth x-day in month, year before/after optional day.
      x = 0 means Sunday, x = 1 means Monday, and so on.  If n<0, return the nth
@@ -68,8 +69,6 @@ GregorianCalendar GregorianCalendar::NthXday(int n, int x, int month, int year, 
     }
 }
 
-#pragma clang diagnostic pop
-
 GregorianCalendar::operator int() { // Computes the absolute date from the GregorianCalendar date.
     int N = day;           // days this month
     for (int m = month - 1; m > 0; m--)
@@ -82,3 +81,5 @@ GregorianCalendar::operator int() { // Computes the absolute date from the Grego
                     + (year - 1) / 400);   // ...plus prior years divisible by 400
 }
 
+
+#pragma clang diagnostic pop
