@@ -5,9 +5,7 @@
 #include "gtest/gtest.h"
 
 #include "GregorianCalendar.h"
-#include "IslamicCalendar.h"
 #include "JulianCalendar.h"
-#include "HebrewCalendar.h"
 
 #define CLION_DAY_GR 14
 #define CLION_MONTH_GR 4
@@ -38,7 +36,6 @@ TEST_F(CalendarFixture, absolute_check) {
     int absolute = *gregorian_calendar;
     EXPECT_EQ(absolute, CLION_ABSOLUTE);
 }
-
 
 TEST_F(CalendarFixture, julian_check) {
     int absolute = *gregorian_calendar;
