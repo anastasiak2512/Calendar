@@ -9,5 +9,6 @@ add_executable(calendar_run ${SOURCE_FILES})
 include_directories(calendars)
 
 add_subdirectory(calendars)
+add_subdirectory(calendars_tests)
 
 target_link_libraries(calendar_run calendars)
