@@ -9,7 +9,7 @@ static const int year_max_len = 366;
 
 class JulianCalendar : public Calendar {
 public:
-    JulianCalendar(int d);
+    JulianCalendar(int date);
 
     JulianCalendar(int m, int d, int y) : Calendar(m, d, y) {
     };

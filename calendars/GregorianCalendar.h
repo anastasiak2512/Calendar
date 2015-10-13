@@ -13,7 +13,6 @@ public:
     //    LastMonthDay computes the last date of the month for the Gregorian calendar.
     static int LastMonthDay(int month, int year);
 
-
     GregorianCalendar NthXday(int n, int x,
             int month, int year, int day = 0);
 

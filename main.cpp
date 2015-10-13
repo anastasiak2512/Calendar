@@ -17,6 +17,8 @@ const char *DayName[7] =
                 "Saturday"
         };
 
+
+//Service to check: http://www.calendarhome.com/calculate/convert-a-date/
 int main() {
     int day;
     int month;
@@ -35,14 +37,13 @@ int main() {
     cout << gregorian_calendar << " = " << a << " = "
             << DayName[gregorian_calendar % 7] << "\n";
 
-    cout << "    = GregorianCalendar date " << gregorian_calendar
-            << " = absolute date " << a
-            << "last day" << gregorian_calendar.LastMonthDay(12, 2015) << "\n";
+    gregorian_calendar = a;
+    a = gregorian_calendar;
+    cout << "    = GregorianCalendar date " << gregorian_calendar << " = absolute date " << a << "\n";
 
     JulianCalendar julian_calendar(a);
     a = julian_calendar;
-    cout << "    = JulianCalendar date " << julian_calendar << " = absolute date " << a
-            << "last day" << julian_calendar.LastMonthDay(12, 2015) << "\n";
+    cout << "    = JulianCalendar date " << julian_calendar << " = absolute date " << a << "\n";
 
     HebrewCalendar hebrew_calendar(a);
     a = hebrew_calendar;
@@ -51,11 +52,6 @@ int main() {
     IslamicCalendar islamic_calendar(a);
     a = islamic_calendar;
     cout << "    = IslamicCalendar date " << islamic_calendar << " = absolute date " << a << "\n";
-
-    cout << "    = julian_calendar date " << julian_calendar << "\n";
-    cout << "    = hebrew_calendar date " << hebrew_calendar << "\n";
-    cout << "    = islamic_calendar date " << islamic_calendar << "\n";
-
 
     return 0;
 }
