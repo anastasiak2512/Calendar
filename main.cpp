@@ -17,7 +17,6 @@ const char *DayName[7] =
                 "Saturday"
         };
 
-
 //Service to check: http://www.calendarhome.com/calculate/convert-a-date/
 int main() {
     int day;
@@ -32,7 +31,8 @@ int main() {
             << GregorianCalendar::LastMonthDay(month, year) << "): ";
     cin >> day;
 
-    GregorianCalendar gregorian_calendar(month, day, year);
+    GregorianCalendar gregorian_calendar(month, day,
+                                         year);
     int a = gregorian_calendar;
     cout << gregorian_calendar << " = " << a << " = "
             << DayName[gregorian_calendar % 7] << "\n";
