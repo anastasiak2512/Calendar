@@ -10,17 +10,22 @@ public:
 
     operator int();
 
-    //    LastMonthDay computes the last date of the month for the Gregorian calendar.
     static int LastMonthDay(int month, int year);
 
-    GregorianCalendar NthXday(int n, int x,
-            int month, int year, int day = 0);
+    /// @brief Check if the given year is a leap one.
+    /// @param y Year given.
+    /// @return True for the leap year, false - otherwise.
+    static bool ifLeapYear(int y);
 
-    int getDefYearLen() {
-        return 356;
-    }
-
-
-    int get_general_day(int x, GregorianCalendar &calendar);
+    /// @brief The Gregorian date of nth x-day
+    ///        in month, year before/after optional day.
+    /// @return Gregorian date.
+    GregorianCalendar NthXday(int n, ///< [in] The number of the x-day.
+                              int x, ///< [in] x = 0 means Sunday, x = 1 means Monday, and so on.
+                              int month, ///< [in] Month given.
+                              int year, ///< [in] Year given.
+                              int day = 0 ///< [in] Day given. If day is omitted or 0, it defaults
+                                          ///       to 1 if n>0, and month's last day otherwise.
+                             );
 };
 
