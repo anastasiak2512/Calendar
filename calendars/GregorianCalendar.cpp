@@ -21,8 +21,7 @@ int GregorianCalendar::LastMonthDay(int month, int year)
 {
     switch (month) {
         case 2:
-            if ((((year % 4) == 0) && ((year % 100) != 0))
-                    || ((year % 400) == 0)) {
+            if (ifLeapYear(year)) {
                 return 29;
             }
             else {
@@ -35,6 +34,11 @@ int GregorianCalendar::LastMonthDay(int month, int year)
         default:
             return 31;
     }
+}
+
+bool GregorianCalendar::ifLeapYear(int year) {
+    return (((year % 4) == 0) && ((year % 100) != 0))
+           || ((year % 400) == 0);
 }
 
 /*

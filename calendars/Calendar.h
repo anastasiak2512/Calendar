@@ -7,8 +7,6 @@ protected:
     int month = 1;
     int day = 1;
 
-    int mark = 0;
-
 public:
     Calendar(int m, int d, int y) : month(m), day(d), year(y) {
     };
@@ -44,7 +42,8 @@ public:
         Calendar::day = day;
     }
 
-    void setMark(int mark) {
+
+    void resetDate(int day) {
 
     }
 };

@@ -37,6 +37,10 @@ TEST_F(CalendarFixture, absolute_check) {
     EXPECT_EQ(absolute, CLION_ABSOLUTE);
 }
 
+TEST_F(CalendarFixture, general_test) {
+    sleep(2);
+}
+
 TEST_F(CalendarFixture, julian_check) {
     int absolute = *gregorian_calendar;
     JulianCalendar julian_calendar(absolute);
