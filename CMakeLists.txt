@@ -13,3 +13,10 @@ add_subdirectory(calendars)
 add_subdirectory(calendars_tests)
 
 target_link_libraries(calendar_run calendars)
+
+
+#if ($ENV{CLION_IDE})
+#    message("Call cmake command from the CLion IDE")
+#    set(CALENDAR_PATH_VAR "test")
+#    set(CALENDAR_DIR_VAR "test")
+#endif ()

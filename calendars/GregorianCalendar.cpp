@@ -2,12 +2,14 @@
 #include "General.h"
 
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "IncompatibleTypes"
-static const int i = 366;
+
+bool GregorianCalendar::ifLeapYear(int year) {
+    return (((year % 4) == 0) && ((year % 100) != 0))
+           || ((year % 400) == 0);
+}
 
 GregorianCalendar::GregorianCalendar(int date) {
-    year = date / i;
+    year = date / (DEFAULT_YEAR + 1);
     while (date >= GregorianCalendar(1, 1, year + 1))
         year++;
     month = 1;
@@ -34,11 +36,6 @@ int GregorianCalendar::LastMonthDay(int month, int year)
         default:
             return 31;
     }
-}
-
-bool GregorianCalendar::ifLeapYear(int year) {
-    return (((year % 4) == 0) && ((year % 100) != 0))
-           || ((year % 400) == 0);
 }
 
 /*
@@ -85,5 +82,3 @@ GregorianCalendar::operator int() { // Computes the absolute date from the Grego
                     + (year - 1) / 400);   // ...plus prior years divisible by 400
 }
 
-
-#pragma clang diagnostic pop
