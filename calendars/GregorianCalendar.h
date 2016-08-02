@@ -10,12 +10,21 @@ public:
 
     operator int();
 
+    /// @brief
+    /// @param month
+    /// @param year
+    /// @return
     static int LastMonthDay(int month, int year);
 
+
+
     /// @brief Check if the given year is a leap one.
-    /// @param y Year given.
+    /// @param year Year given.
     /// @return True for the leap year, false - otherwise.
-    static bool ifLeapYear(int y);
+    static bool ifLeapYear(int year);
+
+
+
 
     /// @brief The Gregorian date of nth x-day
     ///        in month, year before/after optional day.

@@ -31,19 +31,17 @@ public:
 
     GregorianCalendar * gregorian_calendar;
 };
-TEST_F(CalendarFixture, absolute_check) {
-
+TEST_F(CalendarFixture, absolute_date_check) {
     int absolute = *gregorian_calendar;
     EXPECT_EQ(absolute, TEST_ABSOLUTE);
 }
 
-TEST_F(CalendarFixture, plus_one_check) {
+TEST_F(CalendarFixture, plus_one_date_check) {
     int absolute = (*gregorian_calendar) + 1;
     EXPECT_EQ(absolute, TEST_ABSOLUTE + 1);
-
 }
 
-TEST_F(CalendarFixture, julian_check) {
+TEST_F(CalendarFixture, julian_date_check) {
     int absolute = *gregorian_calendar;
     JulianCalendar julian_calendar(absolute);
 
@@ -51,7 +49,7 @@ TEST_F(CalendarFixture, julian_check) {
     EXPECT_EQ(julian_absolute, TEST_ABSOLUTE);
 }
 
-TEST_F(CalendarFixture, julian_plus_one_check) {
+TEST_F(CalendarFixture, julian_plus_one_date_check) {
     int absolute = *gregorian_calendar;
     JulianCalendar julian_calendar(absolute);
 

@@ -9,7 +9,7 @@ bool GregorianCalendar::ifLeapYear(int year) {
 }
 
 GregorianCalendar::GregorianCalendar(int date) {
-    year = date / (DEFAULT_YEAR + 1);
+    year = date / (365 + 1);
     while (date >= GregorianCalendar(1, 1, year + 1))
         year++;
     month = 1;
