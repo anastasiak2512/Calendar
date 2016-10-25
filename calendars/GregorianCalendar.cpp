@@ -1,15 +1,13 @@
 #include "GregorianCalendar.h"
 #include "General.h"
 
-#define DEFAULT_YEAR 365
-
 bool GregorianCalendar::ifLeapYear(int year) {
     return (((year % 4) == 0) && ((year % 100) != 0))
            || ((year % 400) == 0);
 }
 
 GregorianCalendar::GregorianCalendar(int date) {
-    year = date / (DEFAULT_YEAR + 1);
+    year = date / (365 + 1);
     while (date >= GregorianCalendar(1, 1, year + 1))
         year++;
     month = 1;
