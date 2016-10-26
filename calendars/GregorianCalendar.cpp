@@ -50,11 +50,10 @@ GregorianCalendar GregorianCalendar::NthXday(int n, int x, int month, int year, 
         }
         GregorianCalendar calendar =
                 GregorianCalendar(month, day, year);
-        int general_day =
-                General::XdayOnOrBefore(6 + calendar, x);
+       
         return
                 GregorianCalendar
-                        ((7 * (n - 1)) + general_day);
+                        ((7 * (n - 1)) + General::XdayOnOrBefore(6 + calendar, x));
     }
     else {
         if (day == 0) {
