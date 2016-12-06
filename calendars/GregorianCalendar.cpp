@@ -21,7 +21,7 @@ int GregorianCalendar::LastMonthDay(int month, int year)
 {
     switch (month) {
         case 2:
-            return (ifLeapYear(year) ? 29 : 28);
+            return (ifLeapYear(year) ? 29 : shortest_month);
         case 4:
         case 6:
         case 9:
