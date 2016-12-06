@@ -7,7 +7,7 @@ bool GregorianCalendar::ifLeapYear(int year) {
 }
 
 GregorianCalendar::GregorianCalendar(int date) {
-    year = date / (365 + 1);
+    year = date / (def_year_len + 1);
     while (date >= GregorianCalendar(1, 1, year + 1))
         year++;
     month = 1;
@@ -25,14 +25,14 @@ int GregorianCalendar::LastMonthDay(int month, int year)
                 return 29;
             }
             else {
-                return 28;
+                return shortest_month;
             }
         case 4:
         case 6:
         case 9:
         case 11: return 30;
         default:
-            return 31;
+            return longest_month;
     }
 }
 
@@ -73,7 +73,7 @@ GregorianCalendar::operator int() { // Computes the absolute date from the Grego
         N = N + LastMonthDay(m, year);
     return
             (N                    // days this year
-                    + 365 * (year - 1)   // days in previous years ignoring leap days
+                    + def_year_len * (year - 1)   // days in previous years ignoring leap days
                     + (year - 1) / 4       // JulianCalendar leap days before this year...
                     - (year - 1) / 100     // ...minus prior century years...
                     + (year - 1) / 400);   // ...plus prior years divisible by 400

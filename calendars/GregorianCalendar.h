@@ -1,6 +1,12 @@
 #include <iostream>
 #include "calendar_defs.h"
 
+static const int def_year_len = 365;
+
+static const int longest_month = 31;
+
+static const int shortest_month = 28;
+
 class GregorianCalendar : public Calendar {
 public:
     GregorianCalendar(int date);
