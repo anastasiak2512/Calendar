@@ -12,7 +12,7 @@ public:
     GregorianCalendar(int date);
 
     GregorianCalendar(int m, int d, int y) : Calendar(m, d, y) {
-    };
+    }
 
     operator int();
 

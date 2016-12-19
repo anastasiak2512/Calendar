@@ -21,31 +21,13 @@ public:
         return 355;
     }
 
-    int getYear() const {
-        return year;
+
+
+    void resetDate(int day)
+    {
     }
-
-
-    int getMonth() const {
-        return month;
-    }
-
-    void setMonth(int month) {
-        Calendar::month = month;
-    }
-
-    int getDay() const {
-        return day;
-    }
-
-    void setDay(int day) {
-        Calendar::day = day;
-    }
-
-
-    void resetDate(int day) {
-
-    }
+    int getDay() const;
+    void setDay(int value);
 };
 
 #endif /*CALENDAR_H*/
