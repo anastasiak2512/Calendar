@@ -1,5 +1,6 @@
 #include <iostream>
 #include "calendar_defs.h"
+#include "General.h"
 
 static const int def_year_len = 365;
 
@@ -32,8 +33,12 @@ public:
 
 
 
-    /// @brief The Gregorian date of nth x-day
-    ///        in month, year before/after optional day.
+    /// @brief The GregorianCalendar date of nth x-day in month, year before/after
+    /// optional day.
+    /// x = 0 means Sunday, x = 1 means Monday, and so on.  If n<0, return the nth
+    /// x-day before month day, year (inclusive).  If n>0, return the nth x-day
+    /// after month day, year (inclusive).  If day is omitted or 0, it defaults
+    /// to 1 if n>0, and month's last day otherwise.
     /// @return Gregorian date.
     GregorianCalendar NthXday(int n, ///< [in] The number of the x-day.
                               int x, ///< [in] x = 0 means Sunday, x = 1 means Monday, and so on.
@@ -41,6 +46,29 @@ public:
                               int year, ///< [in] Year given.
                               int day = 0 ///< [in] Day given. If day is omitted or 0, it defaults
                                           ///       to 1 if n>0, and month's last day otherwise.
-                             );
+                             ) {
+        if (n > 0) {
+            if (day == 0) {
+                day = 1;
+            }
+            GregorianCalendar calendar =
+                    GregorianCalendar(month, day, year);
+
+            return
+                    GregorianCalendar
+                            ((7 * (n - 1)) + General::XdayOnOrBefore(6 + calendar, x));
+        }
+        else {
+            if (day == 0) {
+                day = LastMonthDay(month, year);
+            }
+            GregorianCalendar calendar =
+                    GregorianCalendar(month, day, year);
+            int date = (7 * (n + 1)) +
+                       General::XdayOnOrBefore(calendar, x);
+            return GregorianCalendar(date);
+        }
+    }
+
 };
 
