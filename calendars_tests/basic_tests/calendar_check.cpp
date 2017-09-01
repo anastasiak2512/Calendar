@@ -53,6 +53,6 @@ TEST_F(CalendarFixture, julian_plus_one_date_check) {
     int absolute = *gregorian_calendar;
     JulianCalendar julian_calendar(absolute);
 
-    int julian_absolute = julian_calendar + 1;
+    int julian_absolute = julian_calendar + 2;
     EXPECT_EQ(julian_absolute, TEST_ABSOLUTE + 1);
 }
