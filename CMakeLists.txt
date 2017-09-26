@@ -10,6 +10,7 @@ include_directories(calendars)
 
 add_subdirectory(calendars)
 add_subdirectory(calendars_tests)
+add_subdirectory(calendars_boost_tests)
 
 target_link_libraries(calendar_run calendars)
 
