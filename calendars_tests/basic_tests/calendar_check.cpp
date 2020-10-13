@@ -13,16 +13,15 @@
 #define TEST_ABSOLUTE 735702
 #define TEST_SKIP_RATE 70000
 
-class CalendarFixture : public ::testing::Test {
-protected:
+class CalendarFixture : public ::testing::TestWithParam<int> {
+public:
     virtual void TearDown() {
     }
 
     virtual void SetUp() {
     }
 
-public:
-    CalendarFixture() : Test() {
+    CalendarFixture() : TestWithParam<int>() {
         gregorian_calendar = new GregorianCalendar(TEST_MONTH_GR, TEST_DAY_GR, TEST_YEAR_GR);
     }
 
@@ -32,22 +31,26 @@ public:
 
     GregorianCalendar * gregorian_calendar;
 };
+
 TEST_F(CalendarFixture, absolute_date_check) {
     int absolute = *gregorian_calendar;
     EXPECT_EQ(absolute, TEST_ABSOLUTE);
 }
 
-TEST_F(CalendarFixture, plus_one_date_check) {
+TEST_F(CalendarFixture, DISABLED_plus_one_date_check) {
     int absolute = (*gregorian_calendar) + 1;
 
     if (absolute > TEST_SKIP_RATE)
       GTEST_SKIP_("Skip it for now");
+
     EXPECT_EQ(absolute, TEST_ABSOLUTE + 1);
 }
 
 TEST_F(CalendarFixture, julian_date_check) {
     int absolute = *gregorian_calendar;
     JulianCalendar julian_calendar(absolute);
+
+    sleep(10);
 
     int julian_absolute = julian_calendar;
     EXPECT_EQ(julian_absolute, TEST_ABSOLUTE);
@@ -60,3 +63,12 @@ TEST_F(CalendarFixture, julian_plus_one_date_check) {
     int julian_absolute = julian_calendar + 2;
     EXPECT_EQ(julian_absolute, TEST_ABSOLUTE + 1);
 }
+
+TEST_P(CalendarFixture, param_date_check) {
+  int param = GetParam();
+  int absolute = (*gregorian_calendar) + param;
+  EXPECT_EQ(absolute, TEST_ABSOLUTE + param);
+}
+
+INSTANTIATE_TEST_SUITE_P(CalendarParamTest, CalendarFixture,
+                         testing::Values(1, 2, 3, 4, 100, 1000));
