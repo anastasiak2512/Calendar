@@ -50,8 +50,6 @@ TEST_F(CalendarFixture, julian_date_check) {
     int absolute = *gregorian_calendar;
     JulianCalendar julian_calendar(absolute);
 
-    sleep(10);
-
     int julian_absolute = julian_calendar;
     EXPECT_EQ(julian_absolute, TEST_ABSOLUTE);
 }
@@ -66,6 +64,8 @@ TEST_F(CalendarFixture, julian_plus_one_date_check) {
 
 TEST_P(CalendarFixture, param_date_check) {
   int param = GetParam();
+
+  sleep(1);
   int absolute = (*gregorian_calendar) + param;
   EXPECT_EQ(absolute, TEST_ABSOLUTE + param);
 }
