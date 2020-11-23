@@ -65,10 +65,10 @@ TEST_F(CalendarFixture, julian_plus_one_date_check) {
 TEST_P(CalendarFixture, param_date_check) {
   int param = GetParam();
 
-  sleep(1);
+  sleep(2);
   int absolute = (*gregorian_calendar) + param;
   EXPECT_EQ(absolute, TEST_ABSOLUTE + param);
 }
 
 INSTANTIATE_TEST_SUITE_P(CalendarParamTest, CalendarFixture,
-                         testing::Values(1, 2, 3, 4, 100, 1000));
+                         testing::Values(1, 3, 5, 7, 11, 13, 17));
